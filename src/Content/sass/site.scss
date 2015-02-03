@@ -1,0 +1,245 @@
+﻿$headerColor: #1F807B;
+$shadow: 0px 0px 17px 0px rgba(50, 50, 50, 0.93);
+
+@mixin shadow-hover {
+	box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.93);
+	transition: box-shadow 100ms linear;
+	&:hover {
+		box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.93);
+	}
+}
+
+@font-face {
+    font-family: oswald-light;
+    src: url(/fonts/oswald/Oswald-Light.ttf);
+}
+
+html, 
+body {
+    height:100%;
+}
+
+body {
+    font-family: oswald-light;
+    
+    padding: 0;
+    margin: 0;
+}
+
+header, 
+footer {
+    background-color: $headerColor;
+}
+
+article, 
+aside {
+    padding: 25px;
+}
+
+button {
+	@include shadow-hover;
+    text-transform: uppercase;
+    border-radius: 0;
+    border-width: 0;
+    background-color: #a3c644;;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 100ms linear;
+    margin: 5px;
+
+    &:hover {
+    	background-color: rgb(143, 193, 143);	
+    }
+
+    &:focus {
+    	outline: 0;	
+    }
+}
+
+body {
+	> footer, > header {
+	    width: 100%;
+	    box-shadow: $shadow;
+	    
+	    display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    justify-content: space-around;
+    }
+
+	> main {
+	    padding-top: 25px; 				/* after header */
+	    min-height: calc(100% - 80px); 	/* -footer.height */
+
+	    display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    justify-content: flex-start;
+	    > aside {
+		    background-color: lightblue;
+		    flex-grow: 1;
+		}
+		> article {
+		    background-color: white;  
+		    flex-grow: 4;
+		    max-width: 70%;
+		}
+	}
+}
+
+body > header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 5px;
+}
+
+body > footer {
+    position: relative;
+}
+
+footer div, header div {
+    flex-grow: 1;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+header nav {
+    flex-grow: 4;
+    font-size: 20pt;
+}
+
+
+
+nav {
+    text-transform: uppercase;
+    ul {
+	    display: flex;
+	    flex-direction: row;
+	    list-style-type: none;
+	    justify-content: space-around;
+
+	    margin: 0;
+
+	    text-shadow: 2px 2px 4px #000000;
+
+	    li {
+		    font-size: 11pt;
+		    display: block;
+
+		    cursor: default;
+
+		    a:link, a:visited, a:link:active, a:visited:active{
+			    text-decoration: none;
+			    cursor: auto;
+			    color: black;
+			}
+
+		    a:hover {
+			    color: #fff;
+			}
+		}
+	}
+}
+
+div.theme {
+    background-color: #e6eef2;
+
+    box-shadow: $shadow;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    margin-bottom: 25px;
+    section {
+	    display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    justify-content: flex-start;
+	}
+
+	aside {
+	    background-color: lightblue;
+	    flex-grow: 1;
+	}
+
+	article {
+	    background-color: lightblue;
+	    flex-grow: 4;
+	}
+
+	header {
+	    padding-left: 10px;
+
+	    nav ul {
+		    justify-content: flex-start;
+		}
+	}
+
+	> div.items {
+	    padding-left: 15px;
+	    padding-bottom: 15px;
+
+	    > div.item {
+		}
+	}
+}
+
+div.chat {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    background-color: aliceblue;
+    box-shadow: $shadow;
+
+    > article {
+    	flex-grow: 4;
+    	
+    	> div {
+    		padding: 3px;
+    		word-wrap: break-word;
+
+    		&:nth-child(odd){
+				background-color: lightblue;
+			}
+    	}	
+    }
+
+    > footer {
+    	background-color: lightblue;
+	    padding: 3px;
+	    flex-grow: 1;
+    }
+
+    > div.form {
+	    padding: 20px;
+	    display: flex;
+	    justify-content: flex-end;
+	    flex-direction: column;
+
+	    > label {
+		    margin: 5px;
+		    align-self: center;
+
+		    > span {
+			    display:block;
+			}
+		}
+	}
+}
+
+
+@media (max-width:500px){
+    body > main {
+        flex-direction: column;
+    }
+    body > main > aside {
+        padding: 25px;
+    }
+}
