@@ -1,5 +1,4 @@
 
-
 var chatClient = {
     send: function (group, msg) {
         this.sock.emit('message', {
@@ -18,6 +17,8 @@ var chatClient = {
         });
     },
     leave: function (group) {
-        // TODO
+        this.sock.emit('leave', {
+            group: group
+        });
     }
 };

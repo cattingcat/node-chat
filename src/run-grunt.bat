@@ -1,2 +1,2 @@
 call grunt
-pause
+IF NOT "%1"=="/q" pause

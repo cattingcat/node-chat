@@ -1,2 +1,4 @@
-call node ..\src\server.js
+cd ..\src
+call run-grunt.bat /q
+call node --use_strict --harmony server.js
 pause

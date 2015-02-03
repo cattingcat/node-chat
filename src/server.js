@@ -1,21 +1,34 @@
-var   express 	= require('express')
-	, sockets 	= require('socket.io')
-	, http 		= require('http')
-	, config 	= require('./config.json');
+const   express 	= require('express')
+		, sockets 	= require('socket.io')
+		, http 		= require('http')
+		, config 	= require('./config.json');
 
-var app = express();
-var server = http.Server(app)
+const datasoure = require('./core/mongo.js');
+datasoure.list();
+let tmp = datasoure.proxy.dfgdfgdfg;
 
-var io = sockets(server);
+const app = express();
+const server = http.Server(app)
+
+const io = sockets(server);
 
 
 app.use('/', express.static(__dirname));
+app.use('/', express.static(__dirname + '/views'));
 
 io.on('connection', function(socket){
 
 	socket.on('message', function(data){
-		console.log(data);
-		socket.emit('message', data.message);
+		socket.to(data.group).emit('message', data.message);
+	});
+
+	socket.on('join', function(data){
+		socket.emit('message', {sender: '.', text: 'joined'});
+		socket.join(data.group);
+	});
+
+	socket.on('leave', function(data){
+		socket.leave(data.group);
 	});
 });
 

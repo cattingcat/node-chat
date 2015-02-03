@@ -13,7 +13,7 @@ var Chat = React.createClass({
         var groupName = this.props.group;
         chatClient.leave(groupName);
     },
-    sendSignalr: function(){
+    send: function(){
         var node = this.getDOMNode();
         var input = node.querySelector('footer > input[name="message"]');
         var msg = {
@@ -21,6 +21,9 @@ var Chat = React.createClass({
             sender: this.props.userName
         };
         chatClient.send(this.props.group, msg);
+
+        this.state.messages.push(msg);
+        this.setState(self.state);
     },
     login: function(){
         var self = this,
@@ -56,7 +59,7 @@ var Chat = React.createClass({
                 </article>
                 <footer>
                     <input type="text" name="message" /> 
-                    <button onClick={this.sendSignalr} > Send </button>
+                    <button onClick={this.send} > Send </button>
                 </footer>
             </div>);
         } else {
