@@ -208,6 +208,11 @@ div.chat {
     		&:nth-child(odd){
 				background-color: lightblue;
 			}
+
+			> img.smile {
+				width: 30px;
+				ight: 30px;
+			}
     	}	
     }
 

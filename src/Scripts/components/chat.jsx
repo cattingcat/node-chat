@@ -54,7 +54,21 @@ var Chat = React.createClass({
             <div className="chat">
                 <article>
                     {this.state.messages.map(function(i){
-                        return (<div> <strong> {i.sender} </strong>: {i.text} </div>);
+                        var arr = i.text.split(/(:\w*:)/);
+
+                        return (
+                            <div> 
+                                <strong> {i.sender}: </strong> 
+                                
+                                {arr.map(function(i){
+                                    if(i == ':peka:'){
+                                        return( <img className="smile" src="https://www.google.ru/images/srpr/logo11w.png" /> );
+                                    } else {
+                                        return( <span> {i} </span> );
+                                    }
+                                })}
+                                
+                            </div>);
                     })}
                 </article>
                 <footer>

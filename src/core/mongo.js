@@ -4,7 +4,7 @@ const MongoClient = mongo.MongoClient;
 const url = 'mongodb://localhost:27017/myproject';
 
 module.exports = {
-	list: function(){
+	/*list: function(){
 
 		MongoClient.connect(url, function(err, db){
 			let collection = db.collection('test');
@@ -26,5 +26,5 @@ module.exports = {
 		set: function(receiver, index, value){
 			console.log('set');
 		}
-	})
+	})*/
 };

@@ -1,16 +1,14 @@
-const   express 	= require('express')
+const     express 	= require('express')
 		, sockets 	= require('socket.io')
 		, http 		= require('http')
 		, config 	= require('./config.json');
 
-const datasoure = require('./core/mongo.js');
-datasoure.list();
-let tmp = datasoure.proxy.dfgdfgdfg;
+var datasoure = require('./core/mongo.js');
 
-const app = express();
-const server = http.Server(app)
+var app = express();
+var server = http.Server(app)
 
-const io = sockets(server);
+var io = sockets(server);
 
 
 app.use('/', express.static(__dirname));

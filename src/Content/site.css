@@ -140,6 +140,9 @@ div.chat {
       word-wrap: break-word; }
       div.chat > article > div:nth-child(odd) {
         background-color: lightblue; }
+      div.chat > article > div > img.smile {
+        width: 30px;
+        ight: 30px; }
   div.chat > footer {
     background-color: lightblue;
     padding: 3px;
