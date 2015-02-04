@@ -20,13 +20,15 @@
             }
         });
 
+        React.unmountComponentAtNode(this.view);
+
         if (this.index === null) {
             React.render(React.DOM.span(null, 'Oups!') , this.view);
             return;
         } else {
             var route = this.routing[this.index];
             var element = React.createElement(route.component, route.properties);
+            React.render(element, this.view);
         }
-        React.render(element, this.view);
     }
 };

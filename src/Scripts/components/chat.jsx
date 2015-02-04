@@ -1,6 +1,7 @@
 ﻿if(typeof chatClient === 'undefined') console.log('chatClient required;');
 
 var Chat = React.createClass({
+    displayName: 'Chat',
     getInitialState: function(){
         this.props.smiles = {
             ':peka:': 'http://lurkmore.so/images/8/8d/1238521509967.png'
@@ -11,11 +12,13 @@ var Chat = React.createClass({
         };
     },
     componentDidMount: function(){
+        console.log('chat mounted');
     },
     componentWillUnmount: function(){
         if(this.state.loggedIn){
-            var groupName = this.props.group;
-            chatClient.leave(groupName);
+            var groupName = this.props.group,
+                name = this.props.userName;
+            chatClient.leave(name, groupName);
         }
     },
     send: function(){

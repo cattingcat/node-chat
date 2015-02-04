@@ -44,11 +44,11 @@ io.on('connection', function(socket){
 				socket.emit('failJoined', {status: 'denied'});
 			}
 		});
-
-		
 	});
 
 	socket.on('leave', function(data){
+		console.log('leave');
+		socket.to(data.group).emit('message', {sender: 'global', text: data.name + ' leave'});
 		socket.leave(data.group);
 	});
 });

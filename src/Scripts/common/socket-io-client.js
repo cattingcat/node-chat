@@ -7,7 +7,8 @@ var chatClient = {
         });
     },
     connect: function (msgCallback, joinCallback, joinFailCallback) {
-        this.sock = io.connect('http://localhost:9000');
+        this.sock = io.connect(window.location.origin);
+
         this.sock.on('message', msgCallback);
         this.sock.on('joined', joinCallback);
         this.sock.on('failJoined', joinFailCallback);
@@ -19,9 +20,11 @@ var chatClient = {
             password: pwd
         });
     },
-    leave: function (group) {
+    leave: function (name, group) {
         this.sock.emit('leave', {
-            group: group
+            group: group,
+            name: name
         });
+        this.sock.removeAllListeners();
     }
 };
