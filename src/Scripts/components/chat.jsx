@@ -22,7 +22,7 @@ var Chat = React.createClass({
         var node = this.getDOMNode(),
             input = node.querySelector('footer > textarea[name="message"]'),
             text = input.value.trim();
-            
+
         if(text != ''){ 
             var msg = {
                 text: text,
@@ -33,7 +33,7 @@ var Chat = React.createClass({
             input.value = '';
 
             this.state.messages.push(msg);
-            this.forceUpdate();
+            this.setState({ messages: this.state.messages });
         }
     },
     login: function(){
@@ -52,8 +52,7 @@ var Chat = React.createClass({
         };
 
         var onJoin = function(){
-            self.state.loggedIn = true;
-            self.setState(self.state);
+            self.setState({loggedIn: true});
         };
 
         var onJoinFailed = function(){
@@ -69,6 +68,13 @@ var Chat = React.createClass({
         var input = node.querySelector('footer > textarea[name="message"]');
         input.value += selected;
         e.target.selectedIndex = 0;
+    },
+    textChanged: function(e){
+        console.log(e);
+        if(e.key == 'Enter'){
+            this.send();
+            e.preventDefault();
+        }
     },
     render: function() {
         var self = this;
@@ -103,7 +109,7 @@ var Chat = React.createClass({
                     })}
                 </article>
                 <footer>
-                    <textarea name="message" /> 
+                    <textarea name="message" onKeyPress={this.textChanged} /> 
                     <button onClick={this.send} > Send </button>
                     <select onChange={this.selectChange}> 
                         <option seelcted> </option>
