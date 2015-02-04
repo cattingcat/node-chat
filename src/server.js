@@ -21,8 +21,13 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('join', function(data){
-		socket.emit('message', {sender: 'global', text: 'joined'});
-		socket.join(data.group);
+		// TODO: 
+		if(data.group == data.password){
+			socket.emit('joined', {status: 'success'});
+
+			socket.join(data.group);
+			socket.to(data.group).emit('message', {sender: 'global', text: data.name + ' joined'});
+		}
 	});
 
 	socket.on('leave', function(data){

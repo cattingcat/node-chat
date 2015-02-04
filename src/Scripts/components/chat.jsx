@@ -41,17 +41,18 @@ var Chat = React.createClass({
         this.props.userName = name;
         this.props.group = group;
 
-        this.state.loggedIn = true;
-
         var receiveMsg = function(msg){
             self.state.messages.push(msg);
             self.setState(self.state);
         };
 
-        chatClient.connect(receiveMsg)
-        chatClient.join(group, pwd);
+        var onJoin = function(){
+            self.state.loggedIn = true;
+            self.setState(self.state);
+        };
 
-        self.setState(self.state);
+        chatClient.connect(receiveMsg, onJoin);
+        chatClient.join(name, group, pwd);
     },
     selectChange: function(e){
         var selected = e.target.selectedOptions[0].text;
