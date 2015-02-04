@@ -21,7 +21,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('join', function(data){
-		socket.emit('message', {sender: '.', text: 'joined'});
+		socket.emit('message', {sender: 'global', text: 'joined'});
 		socket.join(data.group);
 	});
 

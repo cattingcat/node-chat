@@ -2,6 +2,9 @@
 
 var Chat = React.createClass({
     getInitialState: function(){
+        this.props.smiles = {
+            ':peka:': 'http://lurkmore.so/images/8/8d/1238521509967.png'
+        };
         return {
             messages: [],
             loggedIn: false
@@ -15,12 +18,13 @@ var Chat = React.createClass({
     },
     send: function(){
         var node = this.getDOMNode();
-        var input = node.querySelector('footer > input[name="message"]');
+        var input = node.querySelector('footer > textarea[name="message"]');
         var msg = {
             text: input.value,
             sender: this.props.userName
         };
         chatClient.send(this.props.group, msg);
+        input.value = '';
 
         this.state.messages.push(msg);
         this.setState(self.state);
@@ -48,6 +52,8 @@ var Chat = React.createClass({
         self.setState(self.state);
     },
     render: function() {
+        var self = this;
+
         if(this.state.loggedIn){
 
             return(
@@ -61,8 +67,8 @@ var Chat = React.createClass({
                                 <strong> {i.sender}: </strong> 
                                 
                                 {arr.map(function(i){
-                                    if(i == ':peka:'){
-                                        return( <img className="smile" src="https://www.google.ru/images/srpr/logo11w.png" /> );
+                                    if(self.props.smiles[i]){
+                                        return( <img className="smile" src={self.props.smiles[i]} /> );
                                     } else {
                                         return( <span> {i} </span> );
                                     }
@@ -72,7 +78,7 @@ var Chat = React.createClass({
                     })}
                 </article>
                 <footer>
-                    <input type="text" name="message" /> 
+                    <textarea name="message" /> 
                     <button onClick={this.send} > Send </button>
                 </footer>
             </div>);

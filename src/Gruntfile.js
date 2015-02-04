@@ -1,8 +1,19 @@
 ﻿module.exports = function (grunt) {
+	grunt.initConfig({
+		sass: {
+			options: {
+            	outputStyle: 'nested',
+            	sourceMap: false
+	        },
+	        dist: {
+	            files: {
+	                './Content/site.css': './Content/sass/site.scss'
+	            }
+        	}
+		},
+	});
 
-    require('time-grunt')(grunt);
+	grunt.loadNpmTasks('grunt-sass');
 
-    require('load-grunt-config')(grunt, {
-        jitGrunt: true
-    });
+	grunt.registerTask('default', ['sass']);
 };

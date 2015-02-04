@@ -142,11 +142,15 @@ div.chat {
         background-color: lightblue; }
       div.chat > article > div > img.smile {
         width: 30px;
-        ight: 30px; }
+        height: 30px; }
   div.chat > footer {
     background-color: lightblue;
     padding: 3px;
     flex-grow: 1; }
+    div.chat > footer > textarea {
+      width: calc(100% - 6px);
+      /* paddings */
+      height: 5em; }
   div.chat > div.form {
     padding: 20px;
     display: flex;
@@ -158,10 +162,13 @@ div.chat {
       div.chat > div.form > label > span {
         display: block; }
 
-@media (max-width: 500px) {
+@media (max-width: 900px) {
   body > main {
     flex-direction: column; }
 
   body > main > aside {
     padding: 25px; }
+
+  body > main > article {
+    max-width: 100%; }
  }
