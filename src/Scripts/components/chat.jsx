@@ -19,29 +19,34 @@ var Chat = React.createClass({
         }
     },
     send: function(){
-        var node = this.getDOMNode();
-        var input = node.querySelector('footer > textarea[name="message"]');
-        var msg = {
-            text: input.value,
-            sender: this.props.userName
-        };
-        chatClient.send(this.props.group, msg);
-        input.value = '';
+        var node = this.getDOMNode(),
+            input = node.querySelector('footer > textarea[name="message"]'),
+            text = input.value.trim();
+            
+        if(text != ''){ 
+            var msg = {
+                text: text,
+                sender: this.props.userName
+            };
 
-        this.state.messages.push(msg);
-        this.forceUpdate();
+            chatClient.send(this.props.group, msg);
+            input.value = '';
+
+            this.state.messages.push(msg);
+            this.forceUpdate();
+        }
     },
     login: function(){
         var self = this,
             node = this.getDOMNode(),
-            name = node.querySelector('input[name="name"]').value,
-            group = node.querySelector('input[name="group"]').value,
-            pwd = node.querySelector('input[name="pwd"]').value;
+            name = node.querySelector('input[name="name"]').value.trim(),
+            group = node.querySelector('input[name="group"]').value.trim(),
+            pwd = node.querySelector('input[name="pwd"]').value.trim();
 
         this.props.userName = name;
         this.props.group = group;
 
-        var receiveMsg = function(msg){
+        var onReceiveMsg = function(msg){
             self.state.messages.push(msg);
             self.setState(self.state);
         };
@@ -51,7 +56,11 @@ var Chat = React.createClass({
             self.setState(self.state);
         };
 
-        chatClient.connect(receiveMsg, onJoin);
+        var onJoinFailed = function(){
+            node.querySelector('input[name="pwd"]').value = '';
+        };
+
+        chatClient.connect(onReceiveMsg, onJoin, onJoinFailed);
         chatClient.join(name, group, pwd);
     },
     selectChange: function(e){

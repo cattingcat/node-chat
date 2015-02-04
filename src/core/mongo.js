@@ -4,27 +4,20 @@ const MongoClient = mongo.MongoClient;
 const url = 'mongodb://localhost:27017/myproject';
 
 module.exports = {
-	/*list: function(){
-
+	createRoom: function(room){
 		MongoClient.connect(url, function(err, db){
-			let collection = db.collection('test');
-			collection.insert(
-				{a: 1, b: 2, c: 3}, 
-				function(err, res){
-					if(err) {
-						console.log('db error');
-						console.log(err);
-					}
-				}
-			);
+			var collection = db.collection('Rooms');
+			collection.insert(room, function(err, res){
+				// nop
+			});
 		});
 	},
-	proxy: Proxy.create({
-		get: function(receiver, index){
-			console.log(index);
-		},
-		set: function(receiver, index, value){
-			console.log('set');
-		}
-	})*/
+	getRooms: function(name, callback){
+		MongoClient.connect(url, function(err, db){
+			var collection = db.collection('Rooms');
+			collection.find({name: name}).toArray(function(err, res){
+				callback(res);
+			});
+		});
+	}
 };

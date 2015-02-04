@@ -6,10 +6,11 @@ var chatClient = {
             message: msg
         });
     },
-    connect: function (msgCallback, joinCallback) {
+    connect: function (msgCallback, joinCallback, joinFailCallback) {
         this.sock = io.connect('http://localhost:9000');
         this.sock.on('message', msgCallback);
         this.sock.on('joined', joinCallback);
+        this.sock.on('failJoined', joinFailCallback);
     },
     join: function (name, group, pwd) {
         this.sock.emit('join', {
