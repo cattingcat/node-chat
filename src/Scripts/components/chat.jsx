@@ -27,7 +27,7 @@ var Chat = React.createClass({
         input.value = '';
 
         this.state.messages.push(msg);
-        this.setState(self.state);
+        this.forceUpdate();
     },
     login: function(){
         var self = this,
@@ -51,8 +51,19 @@ var Chat = React.createClass({
 
         self.setState(self.state);
     },
+    selectChange: function(e){
+        var selected = e.target.selectedOptions[0].text;
+        var node = this.getDOMNode();
+        var input = node.querySelector('footer > textarea[name="message"]');
+        input.value += selected;
+        e.target.selectedIndex = 0;
+    },
     render: function() {
         var self = this;
+        var smiles = [];
+        for(var key in self.props.smiles) {
+            smiles.push(key);
+        }
 
         if(this.state.loggedIn){
 
@@ -80,6 +91,10 @@ var Chat = React.createClass({
                 <footer>
                     <textarea name="message" /> 
                     <button onClick={this.send} > Send </button>
+                    <select onChange={this.selectChange}> 
+                        <option seelcted> </option>
+                        {smiles.map(function(i){ return (<option> {i} </option>); })}
+                    </select>
                 </footer>
             </div>);
         } else {
