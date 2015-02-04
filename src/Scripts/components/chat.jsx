@@ -13,8 +13,10 @@ var Chat = React.createClass({
     componentDidMount: function(){
     },
     componentWillUnmount: function(){
-        var groupName = this.props.group;
-        chatClient.leave(groupName);
+        if(this.state.loggedIn){
+            var groupName = this.props.group;
+            chatClient.leave(groupName);
+        }
     },
     send: function(){
         var node = this.getDOMNode();
@@ -78,8 +80,10 @@ var Chat = React.createClass({
                                 <strong> {i.sender}: </strong> 
                                 
                                 {arr.map(function(i){
-                                    if(self.props.smiles[i]){
-                                        return( <img className="smile" src={self.props.smiles[i]} /> );
+                                    var smile = self.props.smiles[i];
+
+                                    if(smile){
+                                        return( <img className="smile" src={smile} /> );
                                     } else {
                                         return( <span> {i} </span> );
                                     }

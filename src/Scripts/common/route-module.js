@@ -20,10 +20,13 @@
             }
         });
 
-        if (this.index === null) return ('Oups!');
-        var route = this.routing[this.index];
-        var element = React.createElement(route.component, route.properties);
-
+        if (this.index === null) {
+            React.render(React.DOM.span(null, 'Oups!') , this.view);
+            return;
+        } else {
+            var route = this.routing[this.index];
+            var element = React.createElement(route.component, route.properties);
+        }
         React.render(element, this.view);
     }
 };
