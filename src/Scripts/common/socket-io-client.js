@@ -1,8 +1,7 @@
 
 var chatClient = {
-    send: function (group, msg) {
+    send: function (msg) {
         this.sock.emit('message', {
-            group: group, 
             message: msg
         });
     },
@@ -20,11 +19,8 @@ var chatClient = {
             password: pwd
         });
     },
-    leave: function (name, group) {
-        this.sock.emit('leave', {
-            group: group,
-            name: name
-        });
+    leave: function () {
+        this.sock.emit('leave', { });
         this.sock.removeAllListeners();
     }
 };

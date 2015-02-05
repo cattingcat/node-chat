@@ -19,9 +19,7 @@ app.use('/', express.static(__dirname + '/views'));
 io.on('connection', function(socket){
 
 	socket.on('message', function(data){
-		if(socket.rooms.indexOf(data.group) != -1){
-			socket.to(data.group).emit('message', data.message);
-		}
+		socket.to(socket.chGroup).emit('message', data.message);
 	});
 
 	socket.on('join', function(data){
@@ -29,6 +27,10 @@ io.on('connection', function(socket){
 			socket.join(data.group);
 			socket.emit('joined', {status: 'success'});
 			socket.to(data.group).emit('message', {sender: 'global', text: data.name + ' joined'});
+			
+			// put information in socket
+			socket.name = data.name;
+			socket.chGroup = data.group;
 		};
 
 		datasoure.getRooms(data.group, function(i){
@@ -46,11 +48,13 @@ io.on('connection', function(socket){
 		});
 	});
 
-	socket.on('leave', function(data){
-		console.log('leave');
-		socket.to(data.group).emit('message', {sender: 'global', text: data.name + ' leave'});
-		socket.leave(data.group);
-	});
+	var leaveNofit = function(){
+		socket.to(socket.chGroup).emit('message', {sender: 'global', text: socket.name + ' leave'});
+		socket.leave(socket.chGroup);
+	};
+
+	socket.on('leave', leaveNofit);
+	socket.on('disconnect', leaveNofit);
 });
 
 

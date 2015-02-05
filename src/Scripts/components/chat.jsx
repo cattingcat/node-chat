@@ -18,7 +18,7 @@ var Chat = React.createClass({
         if(this.state.loggedIn){
             var groupName = this.props.group,
                 name = this.props.userName;
-            chatClient.leave(name, groupName);
+            chatClient.leave();
         }
     },
     send: function(){
@@ -32,7 +32,7 @@ var Chat = React.createClass({
                 sender: this.props.userName
             };
 
-            chatClient.send(this.props.group, msg);
+            chatClient.send(msg);
             input.value = '';
 
             this.state.messages.push(msg);
