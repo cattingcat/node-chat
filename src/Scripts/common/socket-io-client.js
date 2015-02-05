@@ -1,9 +1,7 @@
 
 var chatClient = {
     send: function (msg) {
-        this.sock.emit('message', {
-            message: msg
-        });
+        this.sock.emit('message', msg);
     },
     connect: function (msgCallback, joinCallback, joinFailCallback) {
         this.sock = io.connect(window.location.origin);

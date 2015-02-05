@@ -19,7 +19,7 @@ app.use('/', express.static(__dirname + '/views'));
 io.on('connection', function(socket){
 
 	socket.on('message', function(data){
-		socket.to(socket.chGroup).emit('message', data.message);
+		socket.to(socket.chGroup).emit('message', data);
 	});
 
 	socket.on('join', function(data){
