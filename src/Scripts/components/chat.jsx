@@ -3,9 +3,6 @@
 var Chat = React.createClass({
     displayName: 'Chat',
     getInitialState: function(){
-        this.props.smiles = {
-            ':peka:': 'http://lurkmore.so/images/8/8d/1238521509967.png'
-        };
         return {
             messages: [],
             loggedIn: false

@@ -15,6 +15,7 @@ var io = sockets(server);
 
 app.use('/', express.static(__dirname));
 app.use('/', express.static(__dirname + '/views'));
+app.set('etag', true);
 
 io.on('connection', function(socket){
 
