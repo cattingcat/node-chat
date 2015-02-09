@@ -16,30 +16,7 @@ header, footer {
 article, aside {
   padding: 25px; }
 
-button {
-  box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.93);
-  transition: box-shadow 100ms linear;
-  text-transform: uppercase;
-  border-radius: 0;
-  border-width: 0;
-  background-color: #a3c644;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-weight: bold;
-  color: white;
-  transition: background-color 100ms linear;
-  margin: 5px; }
-  button:hover {
-    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.93); }
-  button:hover {
-    background-color: #8fc18f; }
-  button:focus {
-    outline: 0; }
-
-select {
-  padding: 5px; }
-
+/* main layout */
 body > footer, body > header {
   width: 100%;
   box-shadow: 0px 0px 17px 0px rgba(50, 50, 50, 0.93);
@@ -82,6 +59,7 @@ header nav {
   flex-grow: 4;
   font-size: 20pt; }
 
+/* navigation */
 nav {
   text-transform: uppercase; }
   nav ul {
@@ -102,32 +80,29 @@ nav {
       nav ul li a:hover {
         color: #fff; }
 
-div.theme {
-  background-color: #e6eef2;
-  box-shadow: 0px 0px 17px 0px rgba(50, 50, 50, 0.93);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  margin-bottom: 25px; }
-  div.theme section {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start; }
-  div.theme aside {
-    background-color: lightblue;
-    flex-grow: 1; }
-  div.theme article {
-    background-color: lightblue;
-    flex-grow: 4; }
-  div.theme header {
-    padding-left: 10px; }
-    div.theme header nav ul {
-      justify-content: flex-start; }
-  div.theme > div.items {
-    padding-left: 15px;
-    padding-bottom: 15px; }
+button {
+  box-shadow: 0px 0px 7px 0px rgba(50, 50, 50, 0.93);
+  transition: box-shadow 100ms linear;
+  text-transform: uppercase;
+  border-radius: 0;
+  border-width: 0;
+  background-color: #a3c644;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+  color: white;
+  transition: background-color 100ms linear;
+  margin: 5px; }
+  button:hover {
+    box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.93); }
+  button:hover {
+    background-color: #8fc18f; }
+  button:focus {
+    outline: 0; }
+
+select {
+  padding: 5px; }
 
 div.chat {
   display: flex;
@@ -164,6 +139,33 @@ div.chat {
       align-self: center; }
       div.chat > div.form > label > span {
         display: block; }
+
+div.theme {
+  background-color: #e6eef2;
+  box-shadow: 0px 0px 17px 0px rgba(50, 50, 50, 0.93);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-bottom: 25px; }
+  div.theme section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start; }
+  div.theme aside {
+    background-color: lightblue;
+    flex-grow: 1; }
+  div.theme article {
+    background-color: lightblue;
+    flex-grow: 4; }
+  div.theme header {
+    padding-left: 10px; }
+    div.theme header nav ul {
+      justify-content: flex-start; }
+  div.theme > div.items {
+    padding-left: 15px;
+    padding-bottom: 15px; }
 
 @media (max-width: 900px) {
   body > main {

@@ -1,0 +1,26 @@
+button {
+	@include shadow-hover;
+    text-transform: uppercase;
+    border-radius: 0;
+    border-width: 0;
+    background-color: #a3c644;;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    color: white;
+    transition: background-color 100ms linear;
+    margin: 5px;
+
+    &:hover {
+    	background-color: rgb(143, 193, 143);	
+    }
+
+    &:focus {
+    	outline: 0;	
+    }
+}
+
+select {
+	padding: 5px;
+}	

@@ -1,0 +1,44 @@
+div.theme {
+    background-color: #e6eef2;
+
+    box-shadow: $shadow;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    margin-bottom: 25px;
+    section {
+	    display: flex;
+	    flex-direction: row;
+	    flex-wrap: nowrap;
+	    justify-content: flex-start;
+	}
+
+	aside {
+	    background-color: lightblue;
+	    flex-grow: 1;
+	}
+
+	article {
+	    background-color: lightblue;
+	    flex-grow: 4;
+	}
+
+	header {
+	    padding-left: 10px;
+
+	    nav ul {
+		    justify-content: flex-start;
+		}
+	}
+
+	> div.items {
+	    padding-left: 15px;
+	    padding-bottom: 15px;
+
+	    > div.item {
+		}
+	}
+}
