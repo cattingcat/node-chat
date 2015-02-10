@@ -1,35 +1,44 @@
 ﻿var Theme = React.createClass({
     getInitialState: function(){
-        return null;
+        return {
+            messages: []
+        };
     },
-    hideContent : function(){
+    onSubmit : function(o){
+        var msg = {
+            message: o.message,
+            head: 'head'
+        };
+        this.state.messages.push(msg);
+        this.forceUpdate();
     },
     render: function() {
         return(
 
             <div className="theme">
-                <header onClick={this.addItem}> 
-                    <strong> {this.props.data.head} </strong>
+                <header> 
+                    <strong> header </strong>
                 </header>
                 <section>
-                    <aside> {this.props.data.aside} </aside>
-                    <article> {this.props.data.article} </article>
-                </section>
-                <div className="items">{
+                    <aside> 
 
-                    this.props.data.items.map(function(i){
-                        return (
-                            <div className="item">
-                                <header> {i.head} </header>
-                                <section>
-                                    <aside> {i.aside} </aside>
-                                    <article> {i.article} </article>
-                                </section>
-                            </div>
-                        );
-                    })
-                    
-                }</div>
+                    </aside>
+                    <article> 
+                        article alot ox textttttttttttttttttttttt
+                        article alot ox textttttttttttttttttttttt
+                        article alot ox textttttttttttttttttttttt
+                        article alot ox textttttttttttttttttttttt
+                        article alot ox textttttttttttttttttttttt
+                        article alot ox textttttttttttttttttttttt
+                        article alot ox textttttttttttttttttttttt
+                     </article>
+                </section>
+                <div className="items">
+                    {this.state.messages.map(function(i){
+                        return (<ThemeItem msg={i} />)
+                    })}
+                   <ThemeForm onSubmit={this.onSubmit} />
+                </div>
             </div>
             
         );

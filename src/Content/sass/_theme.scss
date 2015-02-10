@@ -39,6 +39,19 @@ div.theme {
 	    padding-bottom: 15px;
 
 	    > div.item {
+	    	> header {
+	    		background-color: gray;
+	    	}
+		}
+
+		> div.theme-form {
+			span {
+				margin-right: 10px;
+			}
+			textarea {
+				width: calc(100% - 10px);
+				max-width: calc(100% - 10px);
+			}
 		}
 	}
 }
