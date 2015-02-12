@@ -82,6 +82,7 @@ nav {
 
 button {
   transition: box-shadow 400ms linear;
+  will-change: box-shadow;
   text-transform: uppercase;
   border-radius: 0;
   border-width: 0;
@@ -173,10 +174,7 @@ div.theme {
 @media (max-width: 900px) {
   body > main {
     flex-direction: column; }
-
   body > main > aside {
     padding: 25px; }
-
   body > main > article {
-    max-width: 100%; }
- }
+    max-width: 100%; } }
