@@ -1,0 +1,47 @@
+.circle {
+	position: relative;
+	background-color: black;
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	margin: 2px;
+	-webkit-filter: blur(15px);
+	transition: 200ms;
+	will-change: -webkit-filter;
+	float: left;
+}
+
+.circle > div {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	top: 50px;
+	left: 100px;
+}
+
+.circle:hover {
+	-webkit-filter: blur(40px);
+}
+
+main {
+	display: inline-block;
+	padding: 50px;
+	background: white;
+	-webkit-filter: contrast(20);	
+}
+
+@-webkit-keyframes flash {
+    0%, 100% {
+    	opacity: 1;
+    	background-color: black;
+    } 
+    50% {
+    	opacity: 0.7;
+    	background-color: red;
+    }
+}
+.flash {
+	-webkit-animation-name: flash;
+	-webkit-animation-duration: 10s;
+	-webkit-animation-iteration-count: infinite;
+}
